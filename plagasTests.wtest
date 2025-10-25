@@ -1,0 +1,32 @@
+import plagas.*
+import elementos.*
+
+describe "test de los ataques que hacen las plagas a los elementos"{
+    const hogar1 = new Hogar(mugre = 15, confort = 100)
+    const cucarachas1 = new Cucaracha(poblacion = 20, pesoPromedio = 10)
+
+    const pichichus = new Mascota(salud = 150)
+    const garrapatas1 = new Garrapata(poblacion = 15)
+    
+    
+    const firulais = new Mascota(salud = 500)
+    const pulguitas = new Pulga(poblacion = 30)
+
+    test "Cucarachas1 atacan a Hogar1; el hogar ahora tiene una mugre de 25 y las cucarachas quedan con población de 22"{
+        cucarachas1.atacar(hogar1)
+        assert.equals(25, hogar1.mugre())
+        assert.equals(22, cucarachas1.poblacion())
+    }
+    test "Garrapatas1 atacan a Pichichus 2 veces; el pichichus queda con 84 de salud y las garrapatas quedan con población de 21.6" {
+        garrapatas1.atacar(pichichus)
+        garrapatas1.atacar(pichichus)
+        assert.equals(84, pichichus.salud())
+        assert.equals(21.6, garrapatas1.poblacion())
+
+    }
+    test "Pulguitas atacan a Firulais; firulais con 33 de salud quedan y las pulguitas con población de 440" {
+        pulguitas.atacar(firulais)
+        assert.equals(33, pulguitas.poblacion())
+        assert.equals(440, firulais.salud())
+    }
+}
